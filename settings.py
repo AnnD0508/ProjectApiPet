@@ -1,0 +1,4 @@
+VALID_EMAIL = 'annDqaq@mail.ru'
+VALID_PASSWORD = '987654321'
+BASE_URL = 'http://34.141.58.52:8000/'
+
