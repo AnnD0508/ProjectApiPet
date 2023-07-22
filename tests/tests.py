@@ -32,6 +32,20 @@ class Tests:
         assert pet_add_photo_status == 200
         assert len(link) > 0
 
+    def test_info_about_pet(self):
+        login_status, user_id, user_token = UserDataToAPI().login_user_data()
+        assert login_status == 200
+        pet_create_status, pet_id = PetDataToAPI().create_pet_data(user_id, user_token)
+        assert pet_create_status == 200
+        get_pet_status, get_pet_response = PetDataToAPI().get_info_by_pet_id_date(pet_id)
+        pet = get_pet_response.get('pet')
+        assert get_pet_status == 200
+        assert pet_id == pet.get('id')
+        assert 'Bayun' == pet.get('name')
+        assert 'cat' == pet.get('type')
+        assert 199 == pet.get('age')
+        assert user_id == pet.get('owner_id')
+
     # def test_create_pet(self, write_new_pet_id):
     #     login_status, user_id, user_token = UserDataToAPI().login_user()
     #     assert login_status == 200

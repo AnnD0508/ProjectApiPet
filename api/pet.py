@@ -20,3 +20,9 @@ class PetApi(BaseApi):
         res = requests.post(self.base_url + f'pet/{pet_id}/image', headers=headers, files=files)
         status = res.status_code
         return status, res.json()
+
+    def get_info_about_pet(self, pet_id) -> json:
+        """Запрос к Swagger сайта для получения информации о питомце"""
+        res = requests.get(self.base_url + f'pet/{pet_id}')
+        status = res.status_code
+        return status, res.json()
