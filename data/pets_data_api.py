@@ -23,3 +23,9 @@ class PetDataToAPI:
         files = {'pic': ('1.jpg', file_data, 'image/jpg')}
         [status, response] = PetApi().add_pet_photo(pet_id, headers, files)
         return status, response
+
+    def get_info_by_pet_id_date(self, pet_id):
+        [status, response] = PetApi().get_info_about_pet(pet_id)
+        return status, response
+
+
