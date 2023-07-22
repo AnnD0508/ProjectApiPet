@@ -93,7 +93,7 @@ class Pets:
         my_token = Pets().get_token()[0]
         pet_id = Pets().create_new_pet()[0]
         headers = {'Authorization': f'Bearer {my_token}'}
-        file_data = open('images\\1.jpg', 'rb')
+        file_data = open('../images/1.jpg', 'rb')
         files = {'pic': ('1.jpg', file_data, 'image/jpg')}
         res = requests.post(self.base_url + f'pet/{pet_id}/image', headers=headers, files=files)
         status = res.status_code

@@ -1,7 +1,7 @@
 import os.path
 import pytest
 import requests
-from api import Pets
+from api.pet import Pets
 from settings import VALID_EMAIL, VALID_PASSWORD, BASE_URL
 
 pets = Pets()
