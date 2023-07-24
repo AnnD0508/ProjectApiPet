@@ -16,7 +16,7 @@ class PetDataToAPI:
         [status, response] = PetApi().delete_pet(pet_id, headers)
         return status, response
 
-    def add_pet_photo_data(self, pet_id, user_token ):
+    def add_pet_photo_data(self, pet_id, user_token):
         headers = {'Authorization': f'Bearer {user_token}'}
         path = os.getcwd() + '\\..\\images\\1.jpg'
         file_data = open(path, 'r+b')
@@ -24,8 +24,22 @@ class PetDataToAPI:
         [status, response] = PetApi().add_pet_photo(pet_id, headers, files)
         return status, response
 
-    def get_info_by_pet_id_date(self, pet_id):
+    def get_info_by_pet_id_data(self, pet_id):
         [status, response] = PetApi().get_info_about_pet(pet_id)
         return status, response
+
+    def changing_pet_details_data (self, pet_id, user_token):
+
+        data = {"id": pet_id, "name": 'Vasya', "type": 'dog', "age": 200, "gender": 'Female'}
+        [status, response] = PetApi().changing_pet_details(pet_id, headers, data)
+        return status, response
+
+    def post_pets_list_data(self, user_token, user_id):
+        headers = {'Authorization': f'Bearer {user_token}'}
+        data = {"user_id": user_id}
+        [status, response] = PetApi().post_pets_list(headers, data)
+        return status, response
+
+
 
 

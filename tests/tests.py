@@ -46,6 +46,30 @@ class Tests:
         assert 199 == pet.get('age')
         assert user_id == pet.get('owner_id')
 
+    def test_changing_pet_details(self):
+        login_status, user_id, user_token = UserDataToAPI().login_user_data()
+        assert login_status == 200
+        pet_create_status, pet_id = PetDataToAPI().create_pet_data(user_id, user_token)
+        assert pet_create_status == 200
+        changing_pet_status, changing_pet_response = PetDataToAPI().changing_pet_details_data(pet_id, user_token)
+        id_changing_pet = changing_pet_response.get('id')
+        assert changing_pet_status == 200
+        assert pet_id == id_changing_pet
+
+    def test_post_pets_list(self):
+        login_status, user_id, user_token = UserDataToAPI().login_user_data()
+        assert login_status == 200
+        pets_list_status, pets_list_response = PetDataToAPI().post_pets_list_data(user_token, user_id)
+        result_pets_list = pets_list_response['total']
+        assert pets_list_status == 200
+        assert  result_pets_list == 14
+
+
+        # assert 'Bayun' == pet.get('name')
+        # assert 'cat' == pet.get('type')
+        # assert 199 == pet.get('age')
+        # assert user_id == pet.get('owner_id')
+
     # def test_create_pet(self, write_new_pet_id):
     #     login_status, user_id, user_token = UserDataToAPI().login_user()
     #     assert login_status == 200

@@ -26,3 +26,17 @@ class PetApi(BaseApi):
         res = requests.get(self.base_url + f'pet/{pet_id}')
         status = res.status_code
         return status, res.json()
+
+    def changing_pet_details(self, pet_id, headers, data) -> json:
+        """Запрос к Swagger сайта для изменения питомца"""
+        res = requests.patch(self.base_url + f'pet', data=json.dumps(data), headers=headers)
+        status = res.status_code
+        return status, res.json()
+
+    def post_pets_list(self, headers, data) -> json:
+        """Запрос к Swagger сайта для получения списка питомцев"""
+        res = requests.post(self.base_url + 'pets', data=json.dumps(data), headers=headers)
+        status = res.status_code
+        return status, res.json()
+
+
